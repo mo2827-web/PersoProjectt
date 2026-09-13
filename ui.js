@@ -62,9 +62,9 @@ export function renderList(items) {
     const card = element("article", "assessment-card");
     const top = element("div", "assessment-top");
     const identity = element("div", "product-identity");
-    identity.append(element("p", "brand", item.brand));
-    identity.append(element("h2", "product-title", item.title));
-    identity.append(element("p", "price", `${item.currency} ${item.price}`));
+    identity.append(element("p", "brand", item.brand || "Brand unavailable"));
+    identity.append(element("h2", "product-title", item.title || "Product title unavailable"));
+    identity.append(element("p", "price", item.price ? `${item.currency} ${item.price}` : "Price unavailable"));
 
     const verdict = element("div", "verdict");
     verdict.append(element("p", "verdict-label", "Recommendation"));
@@ -76,6 +76,8 @@ export function renderList(items) {
     card.append(factsList("Materials", item.materials));
     card.append(factsList("Care signals", item.careSignals));
     card.append(factsList("Construction signals", item.constructionSignals));
+    card.append(factsList("Transparency evidence", item.transparencyEvidence));
+    card.append(factsList("Product claims", item.productClaims));
     card.append(factsList("Evidence", item.evidence));
     card.append(factsList("Unknown factors", item.unknownFactors));
 
@@ -89,7 +91,7 @@ export function renderList(items) {
     sourceLink.href = item.url;
     sourceLink.target = "_blank";
     sourceLink.rel = "noreferrer";
-    sourceLink.textContent = "Open original sample page";
+    sourceLink.textContent = "Open original product page";
     card.append(sourceLink);
     elements.results.append(card);
   });

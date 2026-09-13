@@ -2,21 +2,39 @@ import { config } from "./config.js";
 
 export const source = {
   async load(params = {}) {
-    void params;
-    const response = await fetch(config.sampleDataPath);
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), config.timeoutMs);
+    let response;
 
-    if (!response.ok) {
+    try {
+      response = await fetch(config.apiPath, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: params.url || "" }),
+        signal: controller.signal
+      });
+    } catch {
       throw new Error(config.messages.error);
+    } finally {
+      window.clearTimeout(timeout);
     }
 
-    return response.json();
+    const payload = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(payload.error || config.messages.error);
+    }
+
+    return payload.result || null;
   },
 
-  async detail() {
+  async detail(id) {
+    void id;
     throw new Error(config.messages.detailUnavailable);
   },
 
-  async save() {
+  async save(record) {
+    void record;
     throw new Error(config.messages.persistenceUnavailable);
   },
 

@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A transparent product-quality assessment foundation." />
+    <meta name="description" content="A transparent, evidence-based clothing product-quality assessment." />
     <title>Mindful Fibers</title>
     <link rel="stylesheet" href="./style.css" />
-    <script type="module" src="./app.js?v=phase1-controls"></script>
+    <script type="module" src="./app.js?v=phase2-product-check"></script>
   </head>
   <body>
     <main class="site-shell">
@@ -21,12 +21,12 @@
         <div>
           <p class="section-kicker">Product check</p>
           <h2 id="check-title">Start with one garment</h2>
-          <p>Phase 1 uses sample data only. Supported retailers and product-page retrieval arrive in Phase 2.</p>
+          <p>Currently supported: public product pages from Urban Revivo. We use only visible page information and show what is unknown.</p>
         </div>
         <form id="product-form" class="product-form">
           <label for="product-url">Product page URL</label>
           <div class="form-row">
-            <input id="product-url" name="product-url" type="url" placeholder="https://example.com/product" autocomplete="url" />
+            <input id="product-url" name="product-url" type="url" placeholder="https://global.urbanrevivo.com/products/..." autocomplete="url" />
             <button id="check-button" type="submit">Check this item</button>
           </div>
         </form>
@@ -38,7 +38,7 @@
 
       <section id="result-container" class="result-region" aria-live="polite" aria-label="Assessment results"></section>
 
-      <section class="preview-panel" aria-labelledby="preview-title">
+      <section class="preview-panel" aria-labelledby="preview-title" hidden>
         <div>
           <p class="section-kicker">Foundation preview</p>
           <h2 id="preview-title">Inspect every visible state</h2>

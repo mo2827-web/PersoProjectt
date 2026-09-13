@@ -1,10 +1,10 @@
-# Phase 1 checks
+# Phase 1 and Phase 2 checks
 
 Run these manually in under three minutes before a checkpoint. Do not delete earlier checks in later phases.
 
 1. Serve the folder locally, open `index.html`, and confirm there are no browser-console errors.
 2. Confirm the initial sample assessment displays a title, recommendation, score, facts, evidence, transparency note, and original-page link.
-3. Submit the product URL form and confirm it returns the sample result in this phase.
+3. Submit the product URL form and confirm a supported product URL returns a normalized assessment in Phase 2.
 4. Select **Empty state** and confirm a readable empty message appears.
 5. Select **Error state** and confirm a readable error message appears.
 6. Select **Busy state** and confirm controls disable, the busy message appears, then controls re-enable.
@@ -12,5 +12,9 @@ Run these manually in under three minutes before a checkpoint. Do not delete ear
 8. Confirm no tracked file contains a real secret and `.gitignore` includes `.env`, `.env.local`, `node_modules`, and `.DS_Store`.
 9. Confirm `data/sample.json` retains every protected normalized-result key.
 10. GitHub repository is connected and the Vercel smoke test passed on 2026-09-13. Public deployment: https://perso-projectt-ny5251rbl-zero-to-agent2.vercel.app
+11. Confirm the Urban Revivo URL `https://global.urbanrevivo.com/collections/best-sellers-knitwear-nv030500/products/layered-twisted-hem-crew-neck-long-sleeve-knit-t-shirt-uwj960042` returns visible evidence, a score, a recommendation, and an original-page link.
+12. Submit an unsupported link and confirm the message says that only public Urban Revivo product pages are currently supported.
+13. Submit a malformed or empty link and confirm a readable message appears.
+14. Confirm a page with unavailable facts shows unknown factors and a Transparency Concern rather than invented claims.
 
 Phase 2 checks, retained here for the next phase: a supported product URL returns normalized evidence and a recommendation; invalid or unsupported URLs show readable errors; missing data produces a Transparency Concern rather than invented evidence. Phase 3 retains the comparison check: comparison uses two existing results only.

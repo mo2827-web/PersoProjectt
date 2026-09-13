@@ -1,23 +1,47 @@
 export const config = Object.freeze({
-  phase: "Phase 1 - foundation",
+  phase: "Phase 2 - product check MVP",
   sampleDataPath: "./data/sample.json",
-  supportedDomains: Object.freeze([]),
+  apiPath: "/api/check-product",
+  firecrawlEndpoint: "https://api.firecrawl.dev/v2/scrape",
+  supportedDomains: Object.freeze(["global.urbanrevivo.com"]),
+  supportedSources: Object.freeze({
+    "global.urbanrevivo.com": "Urban Revivo"
+  }),
   resultLimit: 1,
-  excerptLimit: 3,
+  excerptLimit: 6,
+  lineMaxLength: 280,
   scoreMaximum: 100,
-  timeoutMs: 4000,
+  timeoutMs: 20000,
+  serverTimeoutMs: 30000,
+  rules: Object.freeze({
+    baseScore: 50,
+    naturalMaterialPoints: 12,
+    syntheticMaterialPoints: -10,
+    easyCarePoints: 5,
+    highMaintenancePoints: -5,
+    constructionPoints: 8,
+    transparencyPoints: 8,
+    evidencePricePoints: 2,
+    highPriceWithoutEvidencePoints: -8,
+    highPriceThreshold: 150,
+    minimumQualityEvidenceCount: 2,
+    buyThreshold: 70,
+    reconsiderThreshold: 45,
+    importantUnknownCount: 2
+  }),
   featureFlags: Object.freeze({
-    productRetrieval: false,
+    productRetrieval: true,
     comparison: false,
     persistence: false
   }),
   messages: Object.freeze({
-    ready: "Sample assessment ready. This foundation does not retrieve product pages yet.",
-    loading: "Loading the sample assessment…",
-    empty: "No sample assessment is available right now.",
-    error: "The sample assessment could not be loaded. Please try again.",
-    busy: "Loading state preview: the controls are temporarily disabled.",
-    detailUnavailable: "Detail records are not part of the Phase 1 foundation.",
+    ready: "Paste a supported Urban Revivo product-page link to begin.",
+    assessmentReady: "Assessment ready. Read the evidence and uncertainty before deciding.",
+    loading: "Reading the public product page and checking its visible quality signals…",
+    empty: "No product information was returned for this page.",
+    error: "We could not check that product page. Please try again.",
+    busy: "Checking the product page. This can take a few seconds…",
+    detailUnavailable: "Detail records are not part of this project.",
     persistenceUnavailable: "Saving is not part of this project."
   })
 });
