@@ -20,7 +20,7 @@ async function showSampleResult(params = {}) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  const formData = new FormData(event.currentTarget);
+  const formData = new FormData(event.target);
   showSampleResult({ url: formData.get("product-url") });
 }
 
