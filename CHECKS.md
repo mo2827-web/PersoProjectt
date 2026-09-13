@@ -16,5 +16,10 @@ Run these manually in under three minutes before a checkpoint. Do not delete ear
 12. Submit an unsupported link and confirm the message says that only public Urban Revivo product pages are currently supported. Passed on 2026-09-13 with `https://www.google.com`.
 13. Submit a malformed or empty link and confirm a readable message appears. Passed on 2026-09-13 with an empty submission.
 14. Confirm a page with unavailable facts shows unknown factors and a Transparency Concern rather than invented claims.
+15. Use the keyboard only: tab to the URL field and action button, submit a supported URL, and confirm focus moves to the assessment.
+16. Confirm the button says “Checking item…” and all form controls disable while the request is in progress.
+17. At 375px wide, confirm the URL field and full-width action button remain easy to use, and long product titles do not overflow.
+18. Confirm the page clearly identifies Urban Revivo as the currently supported source and explains that missing facts are shown as unknown.
+19. Confirm no comparison panel, account, saved history, or batch check is present.
 
 Phase 2 checks, retained here for the next phase: a supported product URL returns normalized evidence and a recommendation; invalid or unsupported URLs show readable errors; missing data produces a Transparency Concern rather than invented evidence. Phase 3 retains the comparison check: comparison uses two existing results only.

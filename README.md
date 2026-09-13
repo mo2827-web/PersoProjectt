@@ -2,9 +2,11 @@
 
 Mindful Fibers is a transparent, evidence-based shopping aid for evaluating visible clothing-product information. It does not claim laboratory certainty or garment lifespan.
 
-## Phase 2 status
+## Phase 3 status
 
 Mindful Fibers now checks one public Urban Revivo product page at a time. The browser sends the URL to the same-origin `/api/check-product` route; the route uses Firecrawl server-side, normalizes visible facts, and applies local, explainable rules. It does not use an LLM, browser-side secrets, accounts, storage, or batch scraping.
+
+Phase 3 improves the existing single-item flow with clearer supported-source guidance, a visible loading state, accessible result focus, clearer uncertainty wording, and a phone-friendly layout. The optional two-item comparison is intentionally not included.
 
 ## Configure Firecrawl
 

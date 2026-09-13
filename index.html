@@ -6,7 +6,7 @@
     <meta name="description" content="A transparent, evidence-based clothing product-quality assessment." />
     <title>Mindful Fibers</title>
     <link rel="stylesheet" href="./style.css" />
-    <script type="module" src="./app.js?v=phase2-evidence2"></script>
+    <script type="module" src="./app.js?v=phase3-reliability"></script>
   </head>
   <body>
     <main class="site-shell">
@@ -21,12 +21,12 @@
         <div>
           <p class="section-kicker">Product check</p>
           <h2 id="check-title">Start with one garment</h2>
-          <p>Currently supported: public product pages from Urban Revivo. We use only visible page information and show what is unknown.</p>
+          <p id="source-guidance"><strong>Supported today:</strong> public Urban Revivo product pages. We use only visible page information and clearly mark what is unknown.</p>
         </div>
-        <form id="product-form" class="product-form">
+        <form id="product-form" class="product-form" novalidate>
           <label for="product-url">Product page URL</label>
           <div class="form-row">
-            <input id="product-url" name="product-url" type="url" placeholder="https://global.urbanrevivo.com/products/..." autocomplete="url" />
+            <input id="product-url" name="product-url" type="url" placeholder="https://global.urbanrevivo.com/products/..." autocomplete="url" aria-describedby="source-guidance" />
             <button id="check-button" type="submit">Check this item</button>
           </div>
         </form>
@@ -57,8 +57,8 @@
         <h2 id="how-title">Evidence before conclusions</h2>
         <ol>
           <li>A product URL will be checked against a small, supported source list.</li>
-          <li>Visible facts will be normalized into a consistent assessment shape.</li>
-          <li>Clear rules will explain the recommendation and any uncertainty.</li>
+          <li>Visible page facts are organized into materials, care, construction, and transparency signals.</li>
+          <li>A simple rule system explains the recommendation; missing facts stay visible as uncertainty.</li>
         </ol>
       </section>
     </main>

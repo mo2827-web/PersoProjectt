@@ -1,8 +1,10 @@
-import { config } from "./config.js";
+import { config } from "./config.js?v=phase3-reliability";
 
 const elements = {
   status: document.getElementById("status-line"),
   results: document.getElementById("result-container"),
+  form: document.getElementById("product-form"),
+  button: document.getElementById("check-button"),
   controls: document.querySelectorAll("button, input")
 };
 
@@ -32,6 +34,8 @@ export function setBusy(isBusy) {
   elements.controls.forEach((control) => {
     control.disabled = isBusy;
   });
+  elements.form.setAttribute("aria-busy", String(isBusy));
+  elements.button.textContent = isBusy ? config.messages.buttonBusy : config.messages.buttonIdle;
 
   if (isBusy) {
     elements.results.replaceChildren(element("div", "state-card busy-state", config.messages.busy));
@@ -45,21 +49,25 @@ export function setStatus(message) {
 
 export function showError(message) {
   clearResults();
+  elements.results.setAttribute("aria-live", "assertive");
   elements.results.append(element("div", "state-card error-state", message));
   revealResults();
 }
 
 export function showEmpty(message) {
   clearResults();
+  elements.results.setAttribute("aria-live", "polite");
   elements.results.append(element("div", "state-card empty-state", message));
   revealResults();
 }
 
 export function renderList(items) {
   clearResults();
+  elements.results.setAttribute("aria-live", "polite");
 
   items.forEach((item) => {
     const card = element("article", "assessment-card");
+    card.tabIndex = -1;
     const top = element("div", "assessment-top");
     const identity = element("div", "product-identity");
     identity.append(element("p", "brand", item.brand || "Brand unavailable"));
@@ -72,6 +80,7 @@ export function renderList(items) {
     verdict.append(element("p", "verdict-label", "Recommendation"));
     verdict.append(element("strong", "recommendation", item.recommendation || "Unknown"));
     verdict.append(element("span", "score", item.qualitySignalsScore === null ? "Score unavailable" : `${item.qualitySignalsScore} / ${config.scoreMaximum}`));
+    verdict.append(element("span", "score-explanation", config.messages.scoreExplanation));
     top.append(identity, verdict);
     card.append(top);
 
@@ -80,7 +89,7 @@ export function renderList(items) {
     card.append(factsList("Construction signals", item.constructionSignals));
     card.append(factsList("Transparency evidence", item.transparencyEvidence));
     card.append(factsList("Product claims", item.productClaims));
-    card.append(factsList("Evidence", item.evidence));
+    card.append(factsList(config.messages.evidenceHeading, item.evidence));
     card.append(factsList("Unknown factors", item.unknownFactors));
 
     const concern = item.transparencyConcern
@@ -99,6 +108,7 @@ export function renderList(items) {
   });
 
   revealResults();
+  elements.results.firstElementChild?.focus({ preventScroll: true });
 }
 
 export function clearResults() {

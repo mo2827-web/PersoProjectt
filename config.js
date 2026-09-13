@@ -1,5 +1,5 @@
 export const config = Object.freeze({
-  phase: "Phase 2 - product check MVP",
+  phase: "Phase 3 - reliability and optional comparison",
   sampleDataPath: "./data/sample.json",
   apiPath: "/api/check-product",
   firecrawlEndpoint: "https://api.firecrawl.dev/v2/scrape",
@@ -42,6 +42,10 @@ export const config = Object.freeze({
     empty: "No product information was returned for this page.",
     error: "We could not check that product page. Please try again.",
     busy: "Checking the product page. This can take a few seconds…",
+    buttonIdle: "Check this item",
+    buttonBusy: "Checking item…",
+    scoreExplanation: "Quality Signals Score — based only on visible page information, not a lifespan guarantee.",
+    evidenceHeading: "Visible page evidence",
     detailUnavailable: "Detail records are not part of this project.",
     persistenceUnavailable: "Saving is not part of this project."
   })
