@@ -69,8 +69,7 @@ function handlePreview(event) {
     ui.setBusy(true);
     window.setTimeout(() => {
       if (action === activeAction) {
-        ui.setBusy(false);
-        ui.setStatus(config.messages.ready);
+        showSampleResult();
       }
     }, config.timeoutMs);
   }
