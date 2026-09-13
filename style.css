@@ -7,6 +7,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body {
   background-color: var(--canvas);
   background-image: radial-gradient(circle at 20% 10%, rgba(255, 250, 235, 0.34), transparent 26rem), radial-gradient(circle at 88% 80%, rgba(115, 66, 33, 0.18), transparent 30rem), repeating-linear-gradient(87deg, rgba(70, 48, 28, 0.035) 0 1px, transparent 1px 5px), repeating-linear-gradient(3deg, rgba(255, 252, 232, 0.06) 0 1px, transparent 1px 7px);
