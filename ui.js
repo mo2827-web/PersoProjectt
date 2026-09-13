@@ -64,7 +64,9 @@ export function renderList(items) {
     const identity = element("div", "product-identity");
     identity.append(element("p", "brand", item.brand || "Brand unavailable"));
     identity.append(element("h2", "product-title", item.title || "Product title unavailable"));
-    identity.append(element("p", "price", item.price ? `${item.currency} ${item.price}` : "Price unavailable"));
+    if (item.price) {
+      identity.append(element("p", "price", `${item.currency} ${item.price}`));
+    }
 
     const verdict = element("div", "verdict");
     verdict.append(element("p", "verdict-label", "Recommendation"));

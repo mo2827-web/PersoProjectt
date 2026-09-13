@@ -111,21 +111,6 @@ function productSection(markdown, title) {
   return titlePosition === -1 ? markdown : markdown.slice(titlePosition, titlePosition + config.productSectionMaxLength);
 }
 
-function priceFrom(lines) {
-  const matches = lines
-    .flatMap((line) => [...line.matchAll(new RegExp(textPatterns.price.source, "gi"))].map((match) => match[0]))
-    .map((value) => ({ value, number: Number.parseFloat(value.replace(/[^\d.,]/g, "").replace(/,/g, "")) }))
-    .filter((candidate) => Number.isFinite(candidate.number));
-
-  if (!matches.length) {
-    return { price: "", currency: "" };
-  }
-
-  const price = matches.reduce((lowest, candidate) => candidate.number < lowest.number ? candidate : lowest).value;
-  const currency = /US\$|USD|\$/i.test(price) ? "USD" : /€/.test(price) ? "EUR" : /£/.test(price) ? "GBP" : /CNY|¥/.test(price) ? "CNY" : "";
-  return { price: price.replace(/US\$|USD|\$|€|£|CNY|¥/i, "").trim(), currency };
-}
-
 function scoreResult(result) {
   const rules = config.rules;
   const allMaterials = result.materials.join(" ").toLowerCase();
@@ -166,14 +151,12 @@ function normalizePage(url, hostname, data) {
   const careLines = linesFrom(productMarkdown, textPatterns.care);
   const constructionLines = linesFrom(productMarkdown, textPatterns.construction);
   const transparencyLines = linesFrom(productMarkdown, textPatterns.transparency);
-  const priceLines = linesFrom(productMarkdown, textPatterns.price);
-  Object.assign(result, priceFrom(priceLines));
   result.materials = limited(materialLines);
   result.careSignals = limited(careLines);
   result.constructionSignals = limited(constructionLines);
   result.transparencyEvidence = limited(transparencyLines);
   result.productClaims = limited([result.title].filter(Boolean));
-  result.evidence = limited([...materialLines, ...careLines, ...constructionLines, ...transparencyLines, ...priceLines]);
+  result.evidence = limited([...materialLines, ...careLines, ...constructionLines, ...transparencyLines]);
 
   if (!result.title) result.unknownFactors.push("Product title was not visible on the retrieved page.");
   if (!result.price) result.unknownFactors.push("Price was not visible on the retrieved page.");
