@@ -23,6 +23,7 @@ The first section of a result gives general reference context for disclosed wool
 - [FTC: Care Labeling Rule](https://www.ftc.gov/legal-library/browse/rules/care-labeling-textile-wearing-apparel-certain-piece-goods-text) — explains required care information and the reasonable basis required for care instructions.
 - [Woolmark: What is wool fibre?](https://www.woolmark.com/fibre/what-is-the-wool-fibre/) — provides fiber-specific context for wool properties. It is not used to rate every wool garment as better than another material.
 - [CottonWorks: Fibers booklet](https://cottonworks.com/wp-content/uploads/2017/11/Fibers_Booklet_edited-1.pdf) — discusses cotton’s moisture absorption, strength, and limits such as lower wrinkle recovery; this general context does not rate a specific garment.
+- [Timeless by Eyllye: Les divers types de fibres textiles et leurs caractéristiques](https://timeless-eyllye.com/fr/blog/post/les-divers-types-de-fibres-textiles-et-leurs-caracteristiques) — user-provided French-language guide used for the broader general fibre-property context; it is not a score input.
 
 ## Limits
 

@@ -81,6 +81,20 @@ h2 { font-size: clamp(2rem, 4vw, 4.25rem); letter-spacing: -0.065em; }
 .error-state { border-color: rgba(154, 48, 39, 0.5); color: var(--error); }
 .empty-state { color: var(--ink-soft); }
 .busy-state { border-style: dashed; }
+.method-page { margin: 0 auto; max-width: 66rem; padding: clamp(2rem, 7vw, 7rem) clamp(1.25rem, 4vw, 4.5rem); }
+.method-page > h1 { font-size: clamp(3.25rem, 8vw, 7rem); max-width: 12ch; }
+.method-back { color: var(--clay-dark); display: inline-block; font-size: 0.8rem; font-weight: 800; margin-bottom: var(--space-5); }
+.method-intro { color: var(--ink-soft); font-size: clamp(1.15rem, 2vw, 1.5rem); line-height: 1.45; max-width: 42rem; }
+.method-section { border-top: 1px solid var(--line); margin-top: var(--space-4); padding-top: var(--space-3); }
+.method-section h2 { font-size: clamp(1.8rem, 4vw, 3.5rem); margin-bottom: var(--space-3); }
+.method-rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.method-rules p { border: 1px solid var(--line); margin: -1px 0 0 -1px; min-height: 8rem; padding: var(--space-2); }
+.method-rules strong { color: var(--moss); display: block; font-size: 1.75rem; letter-spacing: -0.06em; }
+.method-rules span { display: block; margin-top: var(--space-1); }
+.method-note { color: var(--ink-soft); margin: var(--space-3) 0 0; max-width: 48rem; }
+.method-sources { margin: 0; padding-left: 1.15rem; }
+.method-sources li { margin-bottom: var(--space-2); }
+.method-sources a { color: var(--clay-dark); font-weight: 800; }
 
 @media (max-width: 42rem) {
   .site-shell { padding: var(--space-3) var(--space-2) var(--space-4); }
@@ -93,4 +107,5 @@ h2 { font-size: clamp(2rem, 4vw, 4.25rem); letter-spacing: -0.065em; }
   .form-row button { width: 100%; }
   .product-title { font-size: clamp(2.25rem, 12vw, 4rem); }
   .verdict { border-left: 0; border-top: 1px solid var(--line); padding: var(--space-2) 0 0; text-align: left; }
+  .method-rules { grid-template-columns: 1fr; }
 }

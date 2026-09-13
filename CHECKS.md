@@ -24,5 +24,6 @@ Run these manually in under three minutes before a checkpoint. Do not delete ear
 20. Confirm the score guide links to `SOURCES.md`, explains that fiber type alone is not rated good or bad, and describes the four visible-evidence categories.
 21. Confirm the single-item workflow remains the only available assessment flow; optional comparison is intentionally not included.
 22. Confirm the first result section gives general fabric-property context without awarding extra score points, raw material composition appears only under visible page evidence, and the score guide lists the points earned for that page.
+23. Confirm “See the score method and research” opens the readable `score-method.html` page rather than a raw Markdown file, and its references include the user-provided fibre guide.
 
 Phase 2 checks, retained here for the next phase: a supported product URL returns normalized evidence and a recommendation; invalid or unsupported URLs show readable errors; missing data produces a Transparency Concern rather than invented evidence. Phase 3 deliberately keeps the experience to one item at a time.

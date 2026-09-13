@@ -1,4 +1,4 @@
-import { config } from "./config.js?v=phase3-proof";
+import { config } from "./config.js?v=phase3-research";
 
 const elements = {
   status: document.getElementById("status-line"),
@@ -43,18 +43,18 @@ function scoreGuide(item) {
   });
 
   const sources = document.createElement("a");
-  sources.href = "./SOURCES.md";
+  sources.href = "./score-method.html";
   sources.className = "score-sources";
-  sources.textContent = "Read the research, sources, and score limits";
+  sources.textContent = "See the score method and research";
   note.append(proof, sources);
   return note;
 }
 
 function fabricProperties(materials) {
   const materialText = materials.join(" ").toLowerCase();
-  const properties = Object.entries(config.fabricProperties)
+  const properties = [...new Set(Object.entries(config.fabricProperties)
     .filter(([fiber]) => materialText.includes(fiber))
-    .map(([, property]) => `${property.label}: ${property.summary}`);
+    .map(([, property]) => `${property.label}: ${property.summary}`))];
 
   return properties.length ? properties : [config.messages.fabricPropertiesUnavailable];
 }
