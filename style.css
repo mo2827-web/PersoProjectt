@@ -1,0 +1,121 @@
+:root {
+  --cream: #f7f0e5;
+  --paper: #fffaf3;
+  --terracotta: #954b32;
+  --terracotta-dark: #6d3223;
+  --camel: #c8915d;
+  --brown: #5b412f;
+  --charcoal: #2c2a27;
+  --muted: #746a60;
+  --line: #dccdbd;
+  --error: #9c2f2f;
+  --success: #315e49;
+  --space-xs: 0.5rem;
+  --space-sm: 0.875rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4.5rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-body);
+  line-height: 1.55;
+}
+
+button, input { font: inherit; }
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--terracotta);
+  color: var(--paper);
+  font-weight: 700;
+  padding: 0.85rem 1.1rem;
+}
+
+button:hover, button:focus-visible { background: var(--terracotta-dark); }
+
+button:focus-visible, input:focus-visible, a:focus-visible {
+  outline: 3px solid var(--camel);
+  outline-offset: 3px;
+}
+
+button:disabled, input:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.site-shell { margin: 0 auto; max-width: 72rem; padding: var(--space-xl) var(--space-md); }
+
+.masthead { max-width: 46rem; margin-bottom: var(--space-xl); }
+
+.eyebrow, .section-kicker, .brand, .verdict-label {
+  color: var(--terracotta);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin: 0 0 var(--space-xs);
+  text-transform: uppercase;
+}
+
+h1, h2, h3, p { margin-top: 0; }
+h1, h2 { font-family: var(--font-display); line-height: 1.08; }
+h1 { font-size: clamp(3rem, 8vw, 5.5rem); margin-bottom: var(--space-sm); }
+h2 { font-size: clamp(1.75rem, 4vw, 2.7rem); }
+.intro { color: var(--brown); font-size: 1.2rem; max-width: 36rem; }
+
+.check-panel, .preview-panel, .how-it-works, .assessment-card, .state-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+}
+
+.check-panel, .preview-panel { display: grid; gap: var(--space-lg); grid-template-columns: 1fr 1fr; padding: var(--space-lg); }
+.check-panel p, .preview-panel p { color: var(--muted); }
+.product-form label { display: block; font-weight: 700; margin-bottom: var(--space-xs); }
+.form-row { display: flex; gap: var(--space-xs); }
+.form-row input { border: 1px solid var(--line); border-radius: var(--radius-sm); flex: 1; min-width: 0; padding: 0.85rem; }
+.status-region { min-height: 3.5rem; padding: var(--space-sm) 0; }
+#status-line { color: var(--brown); margin-bottom: 0; }
+.result-region { margin-bottom: var(--space-lg); }
+.assessment-card { padding: var(--space-lg); }
+.assessment-top { border-bottom: 1px solid var(--line); display: flex; gap: var(--space-md); justify-content: space-between; margin-bottom: var(--space-md); padding-bottom: var(--space-md); }
+.product-title { margin-bottom: var(--space-xs); }
+.price { color: var(--muted); margin-bottom: 0; }
+.verdict { min-width: 9rem; text-align: right; }
+.recommendation { color: var(--success); display: block; font-family: var(--font-display); font-size: 1.7rem; }
+.score { color: var(--muted); font-size: 0.9rem; }
+.fact-group { margin-top: var(--space-md); }
+.fact-title { color: var(--brown); font-size: 1rem; margin-bottom: var(--space-xs); }
+.fact-group ul { margin: 0; padding-left: 1.1rem; }
+.fact-item { margin-bottom: 0.35rem; }
+.transparency-note { background: #f4e8d8; border-radius: var(--radius-sm); margin: var(--space-md) 0; padding: var(--space-sm); }
+.source-link { color: var(--terracotta-dark); font-weight: 700; }
+.state-card { color: var(--brown); padding: var(--space-lg); }
+.error-state { border-color: #d99d9d; color: var(--error); }
+.empty-state { color: var(--muted); }
+.busy-state { border-style: dashed; }
+.preview-panel { margin-bottom: var(--space-lg); }
+.preview-actions { align-content: start; display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+.preview-actions button { background: var(--brown); }
+.how-it-works { padding: var(--space-lg); }
+.how-it-works ol { margin-bottom: 0; padding-left: 1.25rem; }
+
+@media (max-width: 42rem) {
+  .site-shell { padding: var(--space-lg) var(--space-sm); }
+  .check-panel, .preview-panel { grid-template-columns: 1fr; padding: var(--space-md); }
+  .form-row, .assessment-top { align-items: stretch; flex-direction: column; }
+  .verdict { text-align: left; }
+  .assessment-card, .how-it-works { padding: var(--space-md); }
+}

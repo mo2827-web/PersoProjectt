@@ -1,0 +1,23 @@
+{
+  "id": "sample-organic-cotton-tee",
+  "title": "Sample Cotton Jersey Tee",
+  "brand": "Mindful Fibers Demo",
+  "price": "32",
+  "currency": "USD",
+  "url": "https://example.com/sample-cotton-tee",
+  "sourceDomain": "example.com",
+  "materials": ["100% organic cotton"],
+  "careSignals": ["Machine wash cold"],
+  "constructionSignals": ["Ribbed neckline"],
+  "transparencyEvidence": ["Fiber content is stated on the product page."],
+  "productClaims": ["Everyday cotton jersey tee"],
+  "evidence": [
+    "Material composition: 100% organic cotton.",
+    "Care instruction: machine wash cold.",
+    "Construction detail: ribbed neckline."
+  ],
+  "qualitySignalsScore": 72,
+  "recommendation": "Reconsider",
+  "transparencyConcern": false,
+  "unknownFactors": ["Manufacturing location is not available in this sample."]
+}

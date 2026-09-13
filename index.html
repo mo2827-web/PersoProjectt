@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A transparent product-quality assessment foundation." />
+    <title>Mindful Fibers</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <main class="site-shell">
+      <header class="masthead" aria-labelledby="site-title">
+        <p class="eyebrow">Thoughtful clothing decisions</p>
+        <h1 id="site-title">Mindful Fibers</h1>
+        <p class="intro">A clear look at the quality signals a product page makes visible.</p>
+      </header>
+
+      <section class="check-panel" aria-labelledby="check-title">
+        <div>
+          <p class="section-kicker">Product check</p>
+          <h2 id="check-title">Start with one garment</h2>
+          <p>Phase 1 uses sample data only. Supported retailers and product-page retrieval arrive in Phase 2.</p>
+        </div>
+        <form id="product-form" class="product-form">
+          <label for="product-url">Product page URL</label>
+          <div class="form-row">
+            <input id="product-url" name="product-url" type="url" placeholder="https://example.com/product" autocomplete="url" />
+            <button id="check-button" type="submit">Check this item</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="status-region" aria-live="polite" aria-atomic="true">
+        <p id="status-line" role="status"></p>
+      </section>
+
+      <section id="result-container" class="result-region" aria-live="polite" aria-label="Assessment results"></section>
+
+      <section class="preview-panel" aria-labelledby="preview-title">
+        <div>
+          <p class="section-kicker">Foundation preview</p>
+          <h2 id="preview-title">Inspect every visible state</h2>
+          <p>These controls exist only to test Phase 1 states with controlled sample data.</p>
+        </div>
+        <div class="preview-actions" aria-label="Preview controls">
+          <button type="button" data-preview="result">Sample result</button>
+          <button type="button" data-preview="empty">Empty state</button>
+          <button type="button" data-preview="error">Error state</button>
+          <button type="button" data-preview="busy">Busy state</button>
+        </div>
+      </section>
+
+      <section class="how-it-works" aria-labelledby="how-title">
+        <p class="section-kicker">How it works</p>
+        <h2 id="how-title">Evidence before conclusions</h2>
+        <ol>
+          <li>A product URL will be checked against a small, supported source list.</li>
+          <li>Visible facts will be normalized into a consistent assessment shape.</li>
+          <li>Clear rules will explain the recommendation and any uncertainty.</li>
+        </ol>
+      </section>
+    </main>
+  </body>
+</html>
