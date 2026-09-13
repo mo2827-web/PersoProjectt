@@ -24,6 +24,10 @@ function factsList(label, values) {
   return section;
 }
 
+function revealResults() {
+  elements.results.scrollIntoView({ block: "start" });
+}
+
 export function setBusy(isBusy) {
   elements.controls.forEach((control) => {
     control.disabled = isBusy;
@@ -31,6 +35,7 @@ export function setBusy(isBusy) {
 
   if (isBusy) {
     elements.results.replaceChildren(element("div", "state-card busy-state", config.messages.busy));
+    revealResults();
   }
 }
 
@@ -41,11 +46,13 @@ export function setStatus(message) {
 export function showError(message) {
   clearResults();
   elements.results.append(element("div", "state-card error-state", message));
+  revealResults();
 }
 
 export function showEmpty(message) {
   clearResults();
   elements.results.append(element("div", "state-card empty-state", message));
+  revealResults();
 }
 
 export function renderList(items) {
@@ -86,6 +93,8 @@ export function renderList(items) {
     card.append(sourceLink);
     elements.results.append(card);
   });
+
+  revealResults();
 }
 
 export function clearResults() {
