@@ -13,8 +13,8 @@ Run these manually in under three minutes before a checkpoint. Do not delete ear
 9. Confirm `data/sample.json` retains every protected normalized-result key.
 10. GitHub repository is connected and the Vercel smoke test passed on 2026-09-13. Public deployment: https://perso-projectt-ny5251rbl-zero-to-agent2.vercel.app
 11. Confirm the Urban Revivo URL `https://global.urbanrevivo.com/collections/best-sellers-knitwear-nv030500/products/layered-twisted-hem-crew-neck-long-sleeve-knit-t-shirt-uwj960042` returns visible evidence, a score, a recommendation, and an original-page link. Passed on the public Vercel deployment on 2026-09-13; unverified price was omitted and unavailable facts were shown as unknown.
-12. Submit an unsupported link and confirm the message says that only public Urban Revivo product pages are currently supported.
-13. Submit a malformed or empty link and confirm a readable message appears.
+12. Submit an unsupported link and confirm the message says that only public Urban Revivo product pages are currently supported. Passed on 2026-09-13 with `https://www.google.com`.
+13. Submit a malformed or empty link and confirm a readable message appears. Passed on 2026-09-13 with an empty submission.
 14. Confirm a page with unavailable facts shows unknown factors and a Transparency Concern rather than invented claims.
 
 Phase 2 checks, retained here for the next phase: a supported product URL returns normalized evidence and a recommendation; invalid or unsupported URLs show readable errors; missing data produces a Transparency Concern rather than invented evidence. Phase 3 retains the comparison check: comparison uses two existing results only.
