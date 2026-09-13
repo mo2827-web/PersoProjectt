@@ -10,6 +10,7 @@ export const config = Object.freeze({
   resultLimit: 1,
   excerptLimit: 6,
   lineMaxLength: 280,
+  productSectionMaxLength: 6000,
   scoreMaximum: 100,
   timeoutMs: 20000,
   serverTimeoutMs: 30000,

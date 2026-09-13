@@ -78,8 +78,19 @@ function validateUrl(value) {
 function linesFrom(markdown, pattern) {
   return markdown
     .split("\n")
-    .map((line) => line.replace(/^\s*[-*#>]+\s*/, "").trim())
-    .filter((line) => line.length > 0 && line.length <= config.lineMaxLength && pattern.test(line));
+    .map(cleanLine)
+    .filter((line) => line.length > 0 && line.length <= config.lineMaxLength && !/^https?:\/\//i.test(line) && pattern.test(line));
+}
+
+function cleanLine(line) {
+  return line
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/https?:\/\/\S+/gi, "")
+    .replace(/^\s*[-*#>]+\s*/, "")
+    .replace(/[*_`]/g, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
 }
 
 function unique(values) {
@@ -95,13 +106,22 @@ function firstTitle(markdown, metadata) {
   return metadata?.title || heading?.[1] || "";
 }
 
+function productSection(markdown, title) {
+  const titlePosition = title ? markdown.toLowerCase().indexOf(title.toLowerCase()) : -1;
+  return titlePosition === -1 ? markdown : markdown.slice(titlePosition, titlePosition + config.productSectionMaxLength);
+}
+
 function priceFrom(lines) {
-  const match = lines.join(" ").match(textPatterns.price);
-  if (!match) {
+  const matches = lines
+    .flatMap((line) => [...line.matchAll(new RegExp(textPatterns.price.source, "gi"))].map((match) => match[0]))
+    .map((value) => ({ value, number: Number.parseFloat(value.replace(/[^\d.,]/g, "").replace(/,/g, "")) }))
+    .filter((candidate) => Number.isFinite(candidate.number));
+
+  if (!matches.length) {
     return { price: "", currency: "" };
   }
 
-  const price = match[0];
+  const price = matches.reduce((lowest, candidate) => candidate.number < lowest.number ? candidate : lowest).value;
   const currency = /US\$|USD|\$/i.test(price) ? "USD" : /€/.test(price) ? "EUR" : /£/.test(price) ? "GBP" : /CNY|¥/.test(price) ? "CNY" : "";
   return { price: price.replace(/US\$|USD|\$|€|£|CNY|¥/i, "").trim(), currency };
 }
@@ -137,15 +157,16 @@ function scoreResult(result) {
 function normalizePage(url, hostname, data) {
   const markdown = typeof data?.markdown === "string" ? data.markdown : "";
   const result = emptyResult(url, hostname);
-  const materialLines = linesFrom(markdown, textPatterns.materials);
-  const careLines = linesFrom(markdown, textPatterns.care);
-  const constructionLines = linesFrom(markdown, textPatterns.construction);
-  const transparencyLines = linesFrom(markdown, textPatterns.transparency);
-  const priceLines = linesFrom(markdown, textPatterns.price);
 
   result.id = data?.metadata?.sourceURL || url;
   result.title = firstTitle(markdown, data?.metadata);
   result.brand = config.supportedSources[hostname] || "";
+  const productMarkdown = productSection(markdown, result.title);
+  const materialLines = linesFrom(productMarkdown, textPatterns.materials);
+  const careLines = linesFrom(productMarkdown, textPatterns.care);
+  const constructionLines = linesFrom(productMarkdown, textPatterns.construction);
+  const transparencyLines = linesFrom(productMarkdown, textPatterns.transparency);
+  const priceLines = linesFrom(productMarkdown, textPatterns.price);
   Object.assign(result, priceFrom(priceLines));
   result.materials = limited(materialLines);
   result.careSignals = limited(careLines);
