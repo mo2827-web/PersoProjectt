@@ -1,6 +1,6 @@
 import { config } from "./config.js";
 import { source } from "./source.js";
-import * as ui from "./ui.js";
+import * as ui from "./ui.js?v=phase2-evidence2";
 
 let activeAction = 0;
 

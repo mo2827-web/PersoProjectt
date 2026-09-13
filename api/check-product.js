@@ -75,11 +75,11 @@ function validateUrl(value) {
   return { url: parsed.toString(), hostname: parsed.hostname };
 }
 
-function linesFrom(markdown, pattern) {
+function linesFrom(markdown, pattern, factPattern = null) {
   return markdown
     .split("\n")
     .map(cleanLine)
-    .filter((line) => line.length > 0 && line.length <= config.lineMaxLength && !/^https?:\/\//i.test(line) && pattern.test(line));
+    .filter((line) => line.length > 0 && line.length <= config.lineMaxLength && !/^https?:\/\//i.test(line) && pattern.test(line) && (!factPattern || factPattern.test(line)));
 }
 
 function cleanLine(line) {
@@ -147,9 +147,9 @@ function normalizePage(url, hostname, data) {
   result.title = firstTitle(markdown, data?.metadata);
   result.brand = config.supportedSources[hostname] || "";
   const productMarkdown = productSection(markdown, result.title);
-  const materialLines = linesFrom(productMarkdown, textPatterns.materials);
-  const careLines = linesFrom(productMarkdown, textPatterns.care);
-  const constructionLines = linesFrom(productMarkdown, textPatterns.construction);
+  const materialLines = linesFrom(productMarkdown, textPatterns.materials, /material composition|composition:|fabric:|outer layer|inner layer|shell:|\d+\s*%/i);
+  const careLines = linesFrom(productMarkdown, textPatterns.care, /care instruction|care:|machine wash|hand wash|dry clean|do not wash|do not tumble|do not bleach|wash cold|wash warm/i);
+  const constructionLines = textPatterns.construction.test(result.title) ? [cleanLine(result.title)] : [];
   const transparencyLines = linesFrom(productMarkdown, textPatterns.transparency);
   result.materials = limited(materialLines);
   result.careSignals = limited(careLines);
