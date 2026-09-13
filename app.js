@@ -1,6 +1,6 @@
-import { config } from "./config.js?v=phase3-reliability";
+import { config } from "./config.js?v=phase3-proof";
 import { source } from "./source.js";
-import * as ui from "./ui.js?v=phase3-reliability";
+import * as ui from "./ui.js?v=phase3-proof";
 
 let activeAction = 0;
 

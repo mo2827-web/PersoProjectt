@@ -1,4 +1,4 @@
-import { config } from "./config.js";
+import { config } from "./config.js?v=phase3-proof";
 
 export const source = {
   async load(params = {}) {

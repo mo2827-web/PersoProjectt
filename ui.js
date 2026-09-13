@@ -1,4 +1,4 @@
-import { config } from "./config.js?v=phase3-reliability";
+import { config } from "./config.js?v=phase3-proof";
 
 const elements = {
   status: document.getElementById("status-line"),
@@ -24,6 +24,39 @@ function factsList(label, values) {
   entries.forEach((value) => list.append(element("li", "fact-item", value)));
   section.append(list);
   return section;
+}
+
+function scoreGuide(item) {
+  const note = element("div", "score-guide");
+  note.append(element("p", "score-summary", config.messages.scoreExplanation));
+  note.append(element("strong", "score-proof-title", config.messages.scoreProofHeading));
+  const proof = document.createElement("ul");
+  const categories = [
+    [item.materials.length, "Material composition disclosed", config.rules.materialDisclosurePoints],
+    [item.careSignals.length, "Care instructions disclosed", config.rules.careDisclosurePoints],
+    [item.constructionSignals.length, "Construction detail disclosed", config.rules.constructionDisclosurePoints],
+    [item.transparencyEvidence.length, "Origin or transparency detail disclosed", config.rules.transparencyDisclosurePoints]
+  ];
+
+  categories.forEach(([isPresent, label, points]) => {
+    proof.append(element("li", "score-proof-item", isPresent ? `${label}: +${points}` : `${label}: not shown`));
+  });
+
+  const sources = document.createElement("a");
+  sources.href = "./SOURCES.md";
+  sources.className = "score-sources";
+  sources.textContent = "Read the research, sources, and score limits";
+  note.append(proof, sources);
+  return note;
+}
+
+function fabricProperties(materials) {
+  const materialText = materials.join(" ").toLowerCase();
+  const properties = Object.entries(config.fabricProperties)
+    .filter(([fiber]) => materialText.includes(fiber))
+    .map(([, property]) => `${property.label}: ${property.summary}`);
+
+  return properties.length ? properties : [config.messages.fabricPropertiesUnavailable];
 }
 
 function revealResults() {
@@ -64,6 +97,7 @@ export function showEmpty(message) {
 export function renderList(items) {
   clearResults();
   elements.results.setAttribute("aria-live", "polite");
+  const list = element("div", "assessment-list");
 
   items.forEach((item) => {
     const card = element("article", "assessment-card");
@@ -80,11 +114,11 @@ export function renderList(items) {
     verdict.append(element("p", "verdict-label", "Recommendation"));
     verdict.append(element("strong", "recommendation", item.recommendation || "Unknown"));
     verdict.append(element("span", "score", item.qualitySignalsScore === null ? "Score unavailable" : `${item.qualitySignalsScore} / ${config.scoreMaximum}`));
-    verdict.append(element("span", "score-explanation", config.messages.scoreExplanation));
     top.append(identity, verdict);
     card.append(top);
+    card.append(scoreGuide(item));
 
-    card.append(factsList("Materials", item.materials));
+    card.append(factsList("Fabric properties", fabricProperties(item.materials)));
     card.append(factsList("Care signals", item.careSignals));
     card.append(factsList("Construction signals", item.constructionSignals));
     card.append(factsList("Transparency evidence", item.transparencyEvidence));
@@ -104,11 +138,13 @@ export function renderList(items) {
     sourceLink.rel = "noreferrer";
     sourceLink.textContent = "Open original product page";
     card.append(sourceLink);
-    elements.results.append(card);
+    list.append(card);
   });
 
+  elements.results.append(list);
+
   revealResults();
-  elements.results.firstElementChild?.focus({ preventScroll: true });
+  list.firstElementChild?.focus({ preventScroll: true });
 }
 
 export function clearResults() {

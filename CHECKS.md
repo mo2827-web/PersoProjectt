@@ -21,5 +21,8 @@ Run these manually in under three minutes before a checkpoint. Do not delete ear
 17. At 375px wide, confirm the URL field and full-width action button remain easy to use, and long product titles do not overflow.
 18. Confirm the page clearly identifies Urban Revivo as the currently supported source and explains that missing facts are shown as unknown.
 19. Confirm no comparison panel, account, saved history, or batch check is present.
+20. Confirm the score guide links to `SOURCES.md`, explains that fiber type alone is not rated good or bad, and describes the four visible-evidence categories.
+21. Confirm the single-item workflow remains the only available assessment flow; optional comparison is intentionally not included.
+22. Confirm the first result section gives general fabric-property context without awarding extra score points, raw material composition appears only under visible page evidence, and the score guide lists the points earned for that page.
 
-Phase 2 checks, retained here for the next phase: a supported product URL returns normalized evidence and a recommendation; invalid or unsupported URLs show readable errors; missing data produces a Transparency Concern rather than invented evidence. Phase 3 retains the comparison check: comparison uses two existing results only.
+Phase 2 checks, retained here for the next phase: a supported product URL returns normalized evidence and a recommendation; invalid or unsupported URLs show readable errors; missing data produces a Transparency Concern rather than invented evidence. Phase 3 deliberately keeps the experience to one item at a time.

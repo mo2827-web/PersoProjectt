@@ -6,7 +6,7 @@ Mindful Fibers is a transparent, evidence-based shopping aid for evaluating visi
 
 Mindful Fibers now checks one public Urban Revivo product page at a time. The browser sends the URL to the same-origin `/api/check-product` route; the route uses Firecrawl server-side, normalizes visible facts, and applies local, explainable rules. It does not use an LLM, browser-side secrets, accounts, storage, or batch scraping.
 
-Phase 3 improves the existing single-item flow with clearer supported-source guidance, a visible loading state, accessible result focus, clearer uncertainty wording, and a phone-friendly layout. The optional two-item comparison is intentionally not included.
+Phase 3 improves the existing workflow with clearer supported-source guidance, a visible loading state, accessible result focus, clearer uncertainty wording, and a phone-friendly layout. Optional comparison is intentionally not included. `SOURCES.md` explains the documented limits of the Quality Signals Score.
 
 ## Configure Firecrawl
 
@@ -28,7 +28,7 @@ Then open `http://localhost:8000` and follow [CHECKS.md](./CHECKS.md). To test t
 - `ui.js` owns all visible states.
 - `source.js` is the only browser data-entry boundary.
 - `api/check-product.js` validates one allowed URL, calls Firecrawl, and applies local rules.
-- `config.js` holds tunable values and Phase 2 feature flags.
+- `config.js` holds tunable values and phase feature flags.
 - `data/sample.json` follows the protected result shape in [CONTRACTS.md](./CONTRACTS.md).
 
 ## Deploy

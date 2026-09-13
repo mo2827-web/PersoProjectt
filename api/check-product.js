@@ -113,25 +113,12 @@ function productSection(markdown, title) {
 
 function scoreResult(result) {
   const rules = config.rules;
-  const allMaterials = result.materials.join(" ").toLowerCase();
-  const allCare = result.careSignals.join(" ").toLowerCase();
-  let score = rules.baseScore;
-  const hasNaturalMaterial = /cotton|linen|wool|silk|cashmere|hemp/.test(allMaterials);
-  const hasSyntheticMaterial = /polyester|nylon|acrylic/.test(allMaterials);
-  const hasEasyCare = /machine wash|hand wash/.test(allCare);
-  const hasHighMaintenance = /dry clean|do not wash/.test(allCare);
+  let score = 0;
 
-  if (hasNaturalMaterial) score += rules.naturalMaterialPoints;
-  if (hasSyntheticMaterial) score += rules.syntheticMaterialPoints;
-  if (hasEasyCare) score += rules.easyCarePoints;
-  if (hasHighMaintenance) score += rules.highMaintenancePoints;
-  if (result.constructionSignals.length) score += rules.constructionPoints;
-  if (result.transparencyEvidence.length) score += rules.transparencyPoints;
-
-  const numericPrice = Number.parseFloat(result.price.replace(/,/g, ""));
-  const qualityEvidenceCount = result.materials.length + result.constructionSignals.length + result.transparencyEvidence.length;
-  if (Number.isFinite(numericPrice) && numericPrice > 0 && qualityEvidenceCount >= rules.minimumQualityEvidenceCount) score += rules.evidencePricePoints;
-  if (Number.isFinite(numericPrice) && numericPrice >= rules.highPriceThreshold && qualityEvidenceCount === 0) score += rules.highPriceWithoutEvidencePoints;
+  if (result.materials.length) score += rules.materialDisclosurePoints;
+  if (result.careSignals.length) score += rules.careDisclosurePoints;
+  if (result.constructionSignals.length) score += rules.constructionDisclosurePoints;
+  if (result.transparencyEvidence.length) score += rules.transparencyDisclosurePoints;
 
   result.qualitySignalsScore = Math.max(0, Math.min(config.scoreMaximum, score));
   result.recommendation = result.qualitySignalsScore >= rules.buyThreshold ? "Buy" : result.qualitySignalsScore >= rules.reconsiderThreshold ? "Reconsider" : "Avoid";
